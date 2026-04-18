@@ -20,10 +20,12 @@ function populateStorage() {
   }
 }
 
-const titleInput = document.getElementById("title");
-const authorInput = document.getElementById("author");
-const pagesInput = document.getElementById("pages");
-const readCheckBox = document.getElementById("check");
+function Book(title, author, pages, check) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.check = check;
+}
 
 //check the right input from forms and if its ok -> add the new book (object in array)
 //via Book function and start render function
