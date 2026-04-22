@@ -6,15 +6,3 @@ let order = [
   { itemName: "Hot Coffee", quantity: 2, unitPricePence: 100 },
   { itemName: "Hash Brown", quantity: 4, unitPricePence: 40 },
 ];
-
-console.log(order[0]);
-
-function x(array) {
-  let b;
-  for (let i = 0; i < array.length; i++) {
-    b += i.itemName;
-  }
-  return b;
-}
-
-console.log(x(order));
