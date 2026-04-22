@@ -11,7 +11,7 @@ function populateStorage() {
     const book2 = new Book(
       "The Old Man and the Sea",
       "Ernest Hemingway",
-      127,
+      "127",
       true
     );
     myLibrary.push(book1);
@@ -32,16 +32,16 @@ function Book(title, author, pages, check) {
 function submit() {
   const trimmedTitle = titleInput.value.trim();
   const trimmedAuthor = authorInput.value.trim();
-  const trimmedPages = +pagesInput.value.trim();
+  const trimmedPageNumbers = +pagesInput.value.trim();
 
-  if (!trimmedTitle || !trimmedAuthor || !trimmedPages) {
-    alert("Please fill all fields!");
+  if (!trimmedTitle || !trimmedAuthor || !Number.isInteger(trimmedPageNumbers) || trimmedPageNumbers <= 0) {
+    alert("Please fill all fields! Page count must be a positive integer.");
     return false;
   } else {
     let book = new Book(
       trimmedTitle,
       trimmedAuthor,
-      trimmedPages,
+      trimmedPageNumbers,
       readCheckbox.checked
     );
     myLibrary.push(book);
@@ -63,11 +63,9 @@ function Book(title, author, pages, check) {
 
 function render() {
   const table = document.getElementById("display");
-  const rowsNumber = table.rows.length;
-  //delete old table
-  for (let n = rowsNumber - 1; n > 0; n--) {
-    table.deleteRow(n);
-  }
+  const tbody = table.querySelector("tbody");
+  //clear tbody
+  tbody.innerHTML = "";
   //insert updated row and cells
   const length = myLibrary.length;
   for (let i = 0; i < length; i++) {
@@ -83,7 +81,6 @@ function render() {
 
     //add and wait for action for read/unread button
     const changeBut = document.createElement("button");
-    changeBut.id = i;
     changeBut.className = "btn btn-success";
     wasReadCell.appendChild(changeBut);
     changeBut.innerHTML = myLibrary[i].check ? "Yes" : "No";
@@ -94,8 +91,7 @@ function render() {
     });
 
     //add delete button to every row and render again
-    const delButton = document.createElement("button");
-    delBut.id = i + 5;
+    const delBut = document.createElement("button");
     deleteCell.appendChild(delBut);
     delBut.className = "btn btn-warning";
     delBut.innerHTML = "Delete";
