@@ -6,7 +6,7 @@ const personOne = {
 
 // Update the parameter to this function to make it work.
 // Don't change anything else.
-function introduceYourself({ name, favouriteFood, age }) {
+function introduceYourself(___________________________) {
   console.log(
     `Hello, my name is ${name}. I am ${age} years old and my favourite food is ${favouriteFood}.`
   );
